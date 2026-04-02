@@ -31,7 +31,7 @@ function atualizarBloqueio() {
           priority: 1,
           action: { type: "block" },
           condition: {
-            urlFilter: "youtube.com",
+            urlFilter: "reddit.com",
             resourceTypes: ["main_frame"]
           }
         },
