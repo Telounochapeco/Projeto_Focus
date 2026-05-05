@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocusFlow</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>FocusFlow</h1>
+    <label class="switch">
+      <input type="checkbox" id="focusToggle">
+      <span class="slider"></span>
+    </label>
+    <p id="status">Modo Foco Desativado</p>
+
+    <div class="keywords">
+      <input type="text" id="keywordInput" placeholder="Adicionar palavra-chave">
+      <button id="addKeyword">Adicionar</button>
+      <ul id="keywordList"></ul>
+    </div>
+
+    <button id="clearHistory">Limpar Histórico</button>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

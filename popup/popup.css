@@ -1,0 +1,12 @@
+body { font-family: Arial, sans-serif; width: 320px; padding: 15px; background:#111827; color:white; }
+.container { text-align:center; }
+input[type="text"] { width: 70%; padding: 8px; }
+button { padding: 8px; margin-top: 8px; cursor:pointer; }
+ul { list-style:none; padding:0; max-height:120px; overflow:auto; }
+li { display:flex; justify-content:space-between; margin:4px 0; background:#1f2937; padding:4px; }
+.switch { position: relative; display:inline-block; width:60px; height:34px; }
+.switch input { display:none; }
+.slider { position:absolute; cursor:pointer; inset:0; background:#ccc; transition:.4s; }
+.slider:before { position:absolute; content:""; height:26px; width:26px; left:4px; bottom:4px; background:white; transition:.4s; }
+input:checked + .slider { background:#22c55e; }
+input:checked + .slider:before { transform:translateX(26px); }
