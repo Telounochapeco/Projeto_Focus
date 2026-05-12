@@ -1,51 +1,53 @@
-async function loadData() {
-  const data = await chrome.storage.local.get(["focusMode", "blockedKeywords"]);
-  document.getElementById("focusToggle").checked = !!data.focusMode;
-  updateStatus(data.focusMode);
-  renderKeywords(data.blockedKeywords || []);
+const focusToggle = document.getElementById("focusToggle");
+const siteInput = document.getElementById("siteInput");
+const addBtn = document.getElementById("addBtn");
+const siteList = document.getElementById("siteList");
+
+function renderSites(sites) {
+ siteList.innerHTML = "";
+ sites.forEach((site, index) => {
+   const li = document.createElement("li");
+
+   const span = document.createElement("span");
+   span.textContent = site;
+
+   const btn = document.createElement("button");
+   btn.textContent = "X";
+
+   btn.onclick = () => {
+     sites.splice(index, 1);
+     chrome.storage.local.set({ blockedSites: sites }, () => renderSites(sites));
+   };
+
+   li.appendChild(span);
+   li.appendChild(btn);
+   siteList.appendChild(li);
+ });
 }
 
-function updateStatus(enabled) {
-  document.getElementById("status").textContent = enabled ? "Modo Foco Ativado" : "Modo Foco Desativado";
-}
-
-function renderKeywords(keywords) {
-  const list = document.getElementById("keywordList");
-  list.innerHTML = "";
-  keywords.forEach((keyword, index) => {
-    const li = document.createElement("li");
-    li.innerHTML = `${keyword} <button data-index="${index}">X</button>`;
-    list.appendChild(li);
-  });
-
-  list.querySelectorAll("button").forEach(btn => {
-    btn.addEventListener("click", async () => {
-      const { blockedKeywords } = await chrome.storage.local.get("blockedKeywords");
-      blockedKeywords.splice(btn.dataset.index, 1);
-      await chrome.storage.local.set({ blockedKeywords });
-      loadData();
-    });
-  });
-}
-
-document.getElementById("focusToggle").addEventListener("change", (e) => {
-  chrome.runtime.sendMessage({ type: "toggleFocus", value: e.target.checked });
-  updateStatus(e.target.checked);
+chrome.storage.local.get(["focusMode","blockedSites"], (data) => {
+ focusToggle.checked = data.focusMode || false;
+ renderSites(data.blockedSites || []);
 });
 
-document.getElementById("addKeyword").addEventListener("click", async () => {
-  const input = document.getElementById("keywordInput");
-  const keyword = input.value.trim().toLowerCase();
-  if (!keyword) return;
-  const { blockedKeywords = [] } = await chrome.storage.local.get("blockedKeywords");
-  if (!blockedKeywords.includes(keyword)) blockedKeywords.push(keyword);
-  await chrome.storage.local.set({ blockedKeywords });
-  input.value = "";
-  loadData();
+focusToggle.addEventListener("change", () => {
+ chrome.storage.local.set({ focusMode: focusToggle.checked });
 });
 
-document.getElementById("clearHistory").addEventListener("click", async () => {
-  await chrome.storage.local.set({ history: [] });
-});
+addBtn.addEventListener("click", () => {
+ const value = siteInput.value.trim();
+ if (!value) return;
 
-loadData();
+ chrome.storage.local.get(["blockedSites"], (data) => {
+   const sites = data.blockedSites || [];
+
+   if (!sites.includes(value)) {
+     sites.push(value);
+
+     chrome.storage.local.set({ blockedSites: sites }, () => {
+       renderSites(sites);
+       siteInput.value = "";
+     });
+   }
+ });
+});
