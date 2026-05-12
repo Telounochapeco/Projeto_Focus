@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Acesso Bloqueado</title>
+<link rel="stylesheet" href="blocked.css">
+</head>
+<body>
+<div class="container">
+<h1>🚫 Acesso Bloqueado</h1>
+<p id="site"></p>
+<p>Modo Foco está ativo.</p>
+<blockquote>“Disciplina supera motivação.”</blockquote>
+<button onclick="history.back()">Voltar</button>
+</div>
+<script>
+const params = new URLSearchParams(window.location.search);
+document.getElementById("site").textContent = "Você tentou acessar: " + (params.get("site") || "");
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "FocusFlow",
+  "version": "2.1",
+  "description": "Bloqueia sites por palavras-chave e ajuda no foco.",
+  "permissions": [
+    "storage",
+    "tabs",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png"
+  }
+}
