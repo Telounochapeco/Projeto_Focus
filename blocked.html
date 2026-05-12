@@ -2,17 +2,20 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Site Bloqueado</title>
-<style>
-body{font-family:Arial;background:#0f172a;color:white;display:flex;justify-content:center;align-items:center;height:100vh;text-align:center}
-.box{max-width:600px}
-</style>
+<title>Acesso Bloqueado</title>
+<link rel="stylesheet" href="blocked.css">
 </head>
 <body>
-<div class="box">
-<h1>🚫 Site Bloqueado pelo FocusFlow</h1>
-<p>Este conteúdo corresponde a uma palavra-chave bloqueada no seu Modo Foco.</p>
-<p>Mantenha sua produtividade.</p>
+<div class="container">
+<h1>🚫 Acesso Bloqueado</h1>
+<p id="site"></p>
+<p>Modo Foco está ativo.</p>
+<blockquote>“Disciplina supera motivação.”</blockquote>
+<button onclick="history.back()">Voltar</button>
 </div>
+<script>
+const params = new URLSearchParams(window.location.search);
+document.getElementById("site").textContent = "Você tentou acessar: " + (params.get("site") || "");
+</script>
 </body>
 </html>
