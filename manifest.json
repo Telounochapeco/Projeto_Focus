@@ -1,10 +1,16 @@
 {
   "manifest_version": 3,
   "name": "FocusFlow",
-  "version": "1.0.0",
-  "description": "Bloqueia sites por palavras-chave, modo foco e histórico de produtividade.",
-  "permissions": ["storage", "tabs", "declarativeNetRequest", "declarativeNetRequestWithHostAccess", "webNavigation"],
-  "host_permissions": ["<all_urls>"],
+  "version": "2.1",
+  "description": "Bloqueia sites por palavras-chave e ajuda no foco.",
+  "permissions": [
+    "storage",
+    "tabs",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "background": {
     "service_worker": "background.js"
   },
@@ -12,12 +18,6 @@
     "default_popup": "popup/popup.html"
   },
   "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  },
-  "web_accessible_resources": [{
-    "resources": ["blocked.html"],
-    "matches": ["<all_urls>"]
-  }]
+    "16": "icons/icon16.png"
+  }
 }
