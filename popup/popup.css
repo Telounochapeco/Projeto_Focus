@@ -1,0 +1,8 @@
+
+body{font-family:Arial,sans-serif;min-width:380px;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);color:white;padding:15px}
+.card{background:rgba(255,255,255,.08);padding:20px;border-radius:20px}
+input{width:68%;padding:10px;margin:4px 0}
+button{padding:10px;border:none;border-radius:10px;background:linear-gradient(135deg,#7f5af0,#2cb67d);color:white;cursor:pointer}
+ul{list-style:none;padding:0}
+li{display:flex;justify-content:space-between;margin:6px 0;background:rgba(255,255,255,.05);padding:6px;border-radius:8px}
+label{display:block;margin-bottom:12px}
