@@ -1,0 +1,13 @@
+
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Bloqueado</title>
+<style>
+body{margin:0;font-family:Arial;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);color:#fff;display:flex;justify-content:center;align-items:center;height:100vh}
+.box{background:rgba(255,255,255,.08);padding:40px;border-radius:20px;text-align:center;max-width:700px}
+button{padding:12px 24px;border:none;border-radius:12px;background:linear-gradient(135deg,#7f5af0,#2cb67d);color:#fff;cursor:pointer}
+</style></head><body>
+<div class="box"><h1>🚫 Conteúdo Bloqueado</h1><p id="site"></p><p>Essa página ou conteúdo contém palavras-chave bloqueadas.</p>
+<button onclick="history.back()">Voltar</button></div>
+<script>
+const p=new URLSearchParams(location.search);
+document.getElementById("site").textContent=p.get("site")||"";
+</script></body></html>
